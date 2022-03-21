@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="17">
+      <module name="Phone_Book.Phone_Book-task-build-classes-java.main" target="11" />
+      <module name="Phone_Book.Phone_Book-task-build-generated-sources-annotationProcessor-java.main" target="11" />
+      <module name="Phone_Book.Phone_Book-task-build-generated-sources-headers-java.main" target="11" />
+      <module name="Phone_Book.Phone_Book-task-build-reports-tests.main" target="11" />
+      <module name="Phone_Book.Phone_Book-task-build-test-results.main" target="11" />
+      <module name="Phone_Book.Phone_Book-task-build-tmp.main" target="11" />
+      <module name="Phone_Book.Phone_Book-task.main" target="11" />
+      <module name="Phone_Book.Topics-toString__-Account.main" target="11" />
+      <module name="Phone_Book.Topics-toString__-Books_as_strings.main" target="11" />
+      <module name="Phone_Book.Topics-toString__-Convert_persons_and_patients_to_string.main" target="11" />
+      <module name="Phone_Book.Topics-toString__-Convert_vehicles_and_cars_to_string.main" target="11" />
+      <module name="Phone_Book.Topics-toString__-Theory.main" target="11" />
+      <module name="Phone_Book.Topics-toString__-Users_as_strings.main" target="11" />
+      <module name="Phone_Book.util.main" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
