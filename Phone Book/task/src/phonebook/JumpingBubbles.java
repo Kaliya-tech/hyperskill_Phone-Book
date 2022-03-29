@@ -1,98 +1,72 @@
 package phonebook;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
+
+import static phonebook.Linear_search.runLinearSearch;
+import static phonebook.Main.*;
 
 public class JumpingBubbles {
 
-    public static void startJumpingBubbles() {
 
-        // reading file
+    public static long bubbleSort(long timeLimit) {
 
-        File directory = new File("/home/kaliya/Downloads/directory.txt");
-        File find = new File("/home/kaliya/Downloads/find.txt");
+        long bubbleSortStartingTime = System.currentTimeMillis();
 
-        List<String> sortedNames = new ArrayList<>();
-
-        String allInf = "";
-        String person = "";
-        int countOfStrings = 0;
-        int countOfResults = 0;
-
-        long sortStartingTime = System.currentTimeMillis();
-
-        // reading directory and sort
-
-        try(Scanner scanner = new Scanner(directory)) {
-            while (scanner.hasNext()) {
-                allInf = scanner.nextLine();
-                sortedNames.add(allInf);
+        for (int i = 0; i < informationList.size(); i++) {
+            if (System.currentTimeMillis() - bubbleSortStartingTime >= timeLimit) {
+                break;
             }
-        } catch (FileNotFoundException exception) {
-            System.out.println("No find");
-        }
-
-        Collections.sort(sortedNames);
-
-        long sortEndingTime = System.currentTimeMillis();
-
-        long sortExecutionTime = sortEndingTime - sortStartingTime;
-
-        long sortMin = sortExecutionTime / 60000;
-        if (sortMin < 1) {
-            sortMin = 0;
-        }
-        long sortSec = sortExecutionTime / 1000;
-        while (sortSec > 1) {
-            sortExecutionTime =- 1000;
-        }
-
-        long sortMs = sortExecutionTime;
-
-        // search
-
-        long searchStartingTime = System.currentTimeMillis();
-
-
-        try(Scanner scanner = new Scanner(directory)) {
-            while (scanner.hasNext()) {
-                person = scanner.nextLine();
-                countOfStrings++;
-                if (allInf.contains(person)) {
-                    countOfResults++;
+            for (int j = i + 1; j < informationList.size(); j++) {
+                if (informationList.get(j).name.compareTo(informationList.get(i).name) > 0) {
+                    Contact curr = informationList.get(j);
+                    informationList.set(i, informationList.get(j));
+                    informationList.set(j, curr);
                 }
             }
-        } catch (FileNotFoundException exception) {
-            System.out.println("No file found");
         }
 
-        // Ending TIME
+        return System.currentTimeMillis() - bubbleSortStartingTime;
 
-        long searchEndingTime = System.currentTimeMillis();
-        long searchExecutionTime = searchEndingTime - searchStartingTime;
+    }
 
-        long searchMin = searchExecutionTime / 60000;
-        if (searchMin < 1) {
-            searchMin = 0;
+    public static void jumpSearch(long timeLimit) {
+
+        long startingTime = System.currentTimeMillis();
+        long sortingTime = bubbleSort(timeLimit);
+
+        if (startingTime < timeLimit) {
+            long searchStartTime = System.currentTimeMillis();
+            int block = (int) Math.floor(Math.sqrt(informationList.size()));
+
+            int count = 0;
+            for (String name : findList) {
+                int lastIndex = block - 1;
+
+                while (lastIndex < informationList.size()
+                        && name.compareTo(informationList.get(lastIndex).getName()) > 0) {
+                    lastIndex += block;
+                }
+                for( int i = lastIndex - block + 1; i <= lastIndex && i < informationList.size(); i++) {
+                    if (name.equals(informationList.get(i).getName())) {
+                        count++;
+                        break;
+                    }
+                }
+            }
+            long totalSearchingTime = System.currentTimeMillis() - searchStartTime;
+            long dur = System.currentTimeMillis() - startingTime;
+
+            System.out.println("Found " + count + " / " + findList.size() + " entries. Time taken: " + timer(dur));
+            System.out.println("Sorting time: " + timer(sortingTime));
+            System.out.println("Searching time: " + timer(totalSearchingTime));
+
+        } else {
+            long linearSearch = runLinearSearch();
+            long dur = System.currentTimeMillis() - startingTime;
+
+            System.out.print("Time taken: " + timer(dur));
+            System.out.println();
+            System.out.println("Sorting time: " + timer(sortingTime) + " - Stop and move to linear search");
+            System.out.println("Searching time: " + timer(linearSearch));
         }
-        long searchSec = searchExecutionTime / 1000;
-        while (searchSec > 1) {
-            searchExecutionTime -= 1000;
-        }
-
-        long searchMs = searchExecutionTime;
-
-        long totalMin = sortMin + searchMin;
-        long totalSec = sortSec + searchSec;
-        long totalMs = sortMs + searchMs;
-
-        System.out.println("Start searching (bubble sort + jump search)...\n" +
-                "Found 500 / 500 entries. Time taken: " + totalMin + " min. " + totalSec + " sec. " + totalMs + " ms.\n" +
-                "Sorting time: " + sortMin + " min. " + sortSec+ " sec. " + sortMs + " ms.\n" +
-                "Searching time: " + searchMin + " min. " + searchSec + " sec. " + searchMs + " ms");
-
     }
 }

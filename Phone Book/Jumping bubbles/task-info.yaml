@@ -77,8 +77,24 @@ files:
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/learn/step/5483#comment
-status: Solved
+status: Failed
 feedback:
-  message: Congratulations!
-  time: Mon, 21 Mar 2022 20:50:42 UTC
+  message: |-
+    Wrong answer in test #1
+
+    Your estimated time is not similar to real time the program works. Real time: 3817ms, estimated time: 5685ms
+
+    Please find below the output of your program during this failed test.
+
+    ---
+
+    Start searching (linear search)...
+    Found 500 / 500 entries.
+    Time taken: 0 min. 1 sec. 1007 ms.
+
+    Start searching (bubble sort + jump search)...
+    Found 500 / 500 entries. Time taken: 0 min. 1 sec. 2678 ms.
+    Sorting time: 0 min. 1 sec. 1926 ms.
+    Searching time: 0 min. 0 sec. 752 ms
+  time: Tue, 29 Mar 2022 12:29:19 UTC
 record: 2

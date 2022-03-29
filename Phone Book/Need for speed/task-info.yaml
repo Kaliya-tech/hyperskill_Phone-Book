@@ -241,6 +241,17 @@ files:
         }
     }
   learner_created: true
+- name: src/phonebook/NeedForSpeed.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/5484#comment
-status: Unchecked
-record: -1
+status: Failed
+feedback:
+  message: "Wrong answer in test #1\n\nNot found the part `quick sort` in your output.\n\
+    \nPlease find below the output of your program during this failed test.\n\n---\n\
+    \nStart searching (linear search)...\n\nFound 100 / 1000 entries. Time taken:\
+    \ \nTime taken: 0 min. 0 sec. 16 ms. \n\nStart searching (bubble sort + jump search)...\n\
+    Found 0 / 1000 entries. Time taken: \nTime taken: 0 min. 0 sec. 60 ms. \nSorting\
+    \ time: 0 min. 0 sec. 52 ms.  - Stop\nSearching time: 0 min. 0 sec. 5 ms."
+  time: Tue, 29 Mar 2022 12:26:30 UTC
+record: 3
